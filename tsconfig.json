@@ -19,6 +19,14 @@
       }
     ],
     "paths": {
+      "@/icons/*": ["./components/icons/*"],
+      "@/components/*": ["./components/*"],
+      "@/types/*": ["./lib/types/*"],
+      "@/services/*": ["./lib/redux/services/*"],
+      "@/slices/*": ["./lib/redux/slices/*"],
+      "@/redux/*": ["./lib/redux/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/lib/*": ["./lib/*"],
       "@/*": ["./*"]
     }
   },
