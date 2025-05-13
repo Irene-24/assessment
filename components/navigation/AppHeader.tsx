@@ -12,7 +12,7 @@ const AppHeader = () => {
   return (
     <header
       className={cn(
-        "hidden lg:flex fixed left-0 right-0 top-0 z-50 items-center border-b bg-card",
+        "flex fixed left-0 right-0 top-0 z-50 items-center border-b bg-card",
         {
           "left-(--sidebar-width-icon)": !open && !isMobile,
           "left-(--sidebar-width)": open && !isMobile,
