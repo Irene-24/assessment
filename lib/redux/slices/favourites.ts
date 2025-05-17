@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FavouritesState {
-  postIds: Set<number>;
+  postMap: Record<number, true>;
 }
 
 const initialState: FavouritesState = {
-  postIds: new Set([1]), // you can pre-fill with some test favorites
+  postMap: {},
 };
 
 const favouritesSlice = createSlice({
@@ -13,21 +13,28 @@ const favouritesSlice = createSlice({
   initialState,
   reducers: {
     addFavourite(state, action: PayloadAction<number>) {
-      state.postIds.add(action.payload);
+      state.postMap[action.payload] = true;
     },
     removeFavourite(state, action: PayloadAction<number>) {
-      state.postIds.delete(action.payload);
+      delete state.postMap[action.payload];
     },
     toggleFavourite(state, action: PayloadAction<number>) {
-      if (state.postIds.has(action.payload)) {
-        state.postIds.delete(action.payload);
+      const id = action.payload;
+      if (state.postMap[id]) {
+        delete state.postMap[id];
       } else {
-        state.postIds.add(action.payload);
+        state.postMap[id] = true;
       }
     },
+  },
+  selectors: {
+    getFavourites: (state) => state.postMap,
   },
 });
 
 export const { addFavourite, removeFavourite, toggleFavourite } =
   favouritesSlice.actions;
-export default favouritesSlice.reducer;
+
+export const { getFavourites } = favouritesSlice.selectors;
+
+export default favouritesSlice;

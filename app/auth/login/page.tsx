@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -37,9 +38,13 @@ export default function LoginForm() {
     },
   });
 
+  const router = useRouter();
+
   function onSubmit(values: SchemaType) {
     // Handle login logic here
     console.log(values);
+
+    router.push("/dashboard");
   }
 
   return (
