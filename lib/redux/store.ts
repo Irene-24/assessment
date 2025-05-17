@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Middleware } from "@reduxjs/toolkit";
 import { Action } from "redux";
 
 import { baseApi } from "@/services/base";
+import favourites from "@/slices/favourites";
 
 const middlewares: Middleware[] = [baseApi.middleware];
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
+    [favourites.name]: favourites.reducer,
   },
 
   devTools: process.env.NODE_ENV === "development",
